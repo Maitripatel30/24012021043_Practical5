@@ -23,8 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a24012021043_practical5.ui.theme._24012021043_Practical5Theme
 
-@Composable
-fun FormField(
+@Composable fun FormField(
     label: String,
     textState: String,
     onTextChange: (String) -> Unit,
@@ -47,8 +46,7 @@ fun FormField(
             color = Color(0xFF333333),
             modifier = Modifier.weight(1f)
         )
-        OutlinedTextField(
-            value = textState,
+        OutlinedTextField( value = textState,
             onValueChange = { newValue ->
                 if (!isNumber || newValue.all { it.isDigit() }) {
                     onTextChange(newValue)
@@ -60,17 +58,21 @@ fun FormField(
             textStyle = LocalTextStyle.current.copy(fontSize = 14.sp),
             singleLine = true,
             shape = RoundedCornerShape(8.dp),
-            visualTransformation = if (isPasswordField) PasswordVisualTransformation() else VisualTransformation.None,
-            placeholder = {
-                Text(
-                    text = placeholder ?: "Enter $label",
-                    fontSize = 14.sp,
-                    color = Color(0xFF666666)
-                )
+            visualTransformation = if (isPasswordField)
+                PasswordVisualTransformation()
+            else
+                VisualTransformation.None,
+            placeholder = { Text(
+                text = placeholder ?: "Enter $label",
+                fontSize = 14.sp,
+                color = Color(0xFF666666)
+            )
             },
-            keyboardOptions = if (isNumber) KeyboardOptions(keyboardType = KeyboardType.Number) else KeyboardOptions.Default,
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color(0xFF7A7A7A),
+            keyboardOptions = if (isNumber)
+                KeyboardOptions(keyboardType = KeyboardType.Number)
+            else
+                KeyboardOptions.Default,
+            colors = OutlinedTextFieldDefaults.colors( focusedBorderColor = Color(0xFF7A7A7A),
                 unfocusedBorderColor = Color(0xFF8E8E93),
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent
@@ -80,14 +82,12 @@ fun FormField(
 }
 
 @Preview(showBackground = true)
+
 @Composable
 fun FormFieldPreview() {
-    _24012021043_Practical5Theme {
+    _24012021043_Practical5Theme() {
         FormField(
-            label = "Password",
-            textState = "",
-            onTextChange = {},
-            isPasswordField = true
+            label = "Password", textState = "", onTextChange = {}, isPasswordField = true
         )
     }
 }
